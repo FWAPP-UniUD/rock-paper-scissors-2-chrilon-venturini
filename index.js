@@ -1,5 +1,7 @@
 class RockPaperScissor{
     constructor(containerEl){
+        this.hr;
+        this.oc;
         this.mainDiv = document.createElement("div");
         const title = document.createElement("h1");
         title.textContent = "Your Game";
@@ -41,12 +43,35 @@ class RockPaperScissor{
     }
 
     play(event){
-        const hr = document.createElement("hr");
-        const oc = document.createElement("h2");
         this.opponentChoice();
-        oc.textContent=this.opponent_choice;
-        this.mainDiv.appendChild(hr);
-        this.mainDiv.appendChild(oc);
-     }
+        if (this.hr==null){
+            this.hr = document.createElement("hr");
+            this.oc = document.createElement("h2");
+            this.oc.textContent=this.opponent_choice;
+            this.mainDiv.appendChild(this.hr);
+            this.mainDiv.appendChild(this.oc);    
+        }else{
+            this.oc.textContent=this.opponent_choice;
+        }
+
+        if(this.result==null){
+            const br =document.createElement("br");
+            this.result=document.createElement("h1");
+            this.mainDiv.appendChild(br);
+            this.mainDiv.appendChild(this.result);
+        }
+        this.controlWin();
+    }
+    
+    controlWin(){
+        if(this.current>this.opponent_choice || (this.current==0 && this.opponent_choice==2)){
+            this.result.textContent="Win!";
+        }else if(this.current==this.opponent_choice){
+            this.result.textContent="Tie";
+        }else {
+            this.result.textContent="Lose";
+        }
+    
+    }
 
 }
