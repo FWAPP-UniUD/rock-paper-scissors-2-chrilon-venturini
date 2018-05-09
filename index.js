@@ -1,7 +1,5 @@
 class RockPaperScissor{
     constructor(containerEl){
-        this.hr;
-        this.oc;
         this.mainDiv = document.createElement("div");
         const title = document.createElement("h1");
         title.textContent = "Your Game";
@@ -32,7 +30,14 @@ class RockPaperScissor{
         const button = document.createElement("button");
         button.textContent = "Play!";
         this.mainDiv.append(button);
+
+        this.hr;
+        this.oc;
+
         button.addEventListener("click", this.play.bind(this));
+
+        this.result;
+
         containerEl.append(this.mainDiv);
     }
 
@@ -60,16 +65,18 @@ class RockPaperScissor{
             this.mainDiv.appendChild(br);
             this.mainDiv.appendChild(this.result);
         }
+        let currentAUX = document.querySelector('[name="choice"]:checked');
+        this.current = currentAUX.getAttribute("value");
         this.controlWin();
     }
     
     controlWin(){
-        if(this.current>this.opponent_choice || (this.current==0 && this.opponent_choice==2)){
-            this.result.textContent="Win!";
+        if(this.current<this.opponent_choice || (this.current==2 && this.opponent_choice==0)){
+            this.result.textContent="Lose";
         }else if(this.current==this.opponent_choice){
             this.result.textContent="Tie";
         }else {
-            this.result.textContent="Lose";
+            this.result.textContent="Win!";
         }
     
     }
