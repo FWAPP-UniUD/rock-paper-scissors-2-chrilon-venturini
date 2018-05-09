@@ -1,9 +1,9 @@
-class RockPapaerScissor{
+class RockPaperScissor{
     constructor(){
 
     }
     opponentChoice(){
-        return Math.floor(Math.random()*3);
+        this.opponent_choice= Math.floor(Math.random()*3);
     }
 
 }
