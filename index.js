@@ -29,14 +29,24 @@ class RockPaperScissor{
         
         const button = document.createElement("button");
         button.textContent = "Play!";
-
-        this.mainDiv.append(button);    
-
+        this.mainDiv.append(button);
+        button.addEventListener("click", this.play.bind(this));
         containerEl.append(this.mainDiv);
     }
 
+    
     opponentChoice(){
         this.opponent_choice= Math.floor(Math.random()*3);
+        
     }
+
+    play(event){
+        const hr = document.createElement("hr");
+        const oc = document.createElement("h2");
+        this.opponentChoice();
+        oc.textContent=this.opponent_choice;
+        this.mainDiv.appendChild(hr);
+        this.mainDiv.appendChild(oc);
+     }
 
 }
