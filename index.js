@@ -1,9 +1,9 @@
 class RockPaperScissor{
     constructor(containerEl){
-        const mainDiv = document.createElement("div");
+        this.mainDiv = document.createElement("div");
         const title = document.createElement("h1");
         title.textContent = "Your Game";
-        mainDiv.append(title);
+        this.mainDiv.append(title);
 
         let radios = [];
 
@@ -22,19 +22,19 @@ class RockPaperScissor{
             label.textContent = labels[i];
             let br = document.createElement("br");
 
-            mainDiv.append(radio);
-            mainDiv.append(label);
-            mainDiv.append(br);
+            this.mainDiv.append(radio);
+            this.mainDiv.append(label);
+            this.mainDiv.append(br);
         }
         
         const button = document.createElement("button");
         button.textContent = "Play!";
 
-        mainDiv.append(button);
+        this.mainDiv.append(button);
 
-        containerEl.append(mainDiv);
+        containerEl.append(this.mainDiv);
     }
-    
+
     opponentChoice(){
         this.opponent_choice= Math.floor(Math.random()*3);
     }
