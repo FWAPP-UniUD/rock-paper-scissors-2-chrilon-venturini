@@ -30,7 +30,14 @@ class RockPaperScissor{
         const button = document.createElement("button");
         button.textContent = "Play!";
         this.mainDiv.append(button);
+
+        this.hr;
+        this.oc;
+
         button.addEventListener("click", this.play.bind(this));
+
+        this.result;
+
         containerEl.append(this.mainDiv);
     }
 
@@ -41,12 +48,19 @@ class RockPaperScissor{
     }
 
     play(event){
-        const hr = document.createElement("hr");
-        const oc = document.createElement("h2");
         this.opponentChoice();
-        oc.textContent=this.opponent_choice;
-        this.mainDiv.appendChild(hr);
-        this.mainDiv.appendChild(oc);
+        if (this.hr == null) {
+            this.hr = document.createElement("hr");
+            this.oc = document.createElement("h2");
+            this.oc.textContent = this.opponent_choice;
+            this.mainDiv.appendChild(this.hr);
+            this.mainDiv.appendChild(this.oc);
+        } else {
+            this.oc.textContent = this.opponent_choice;
+        }
+        
+        this.current = document.querySelector('[name="choice"]:checked');
+        controlWin();
      }
 
 }
