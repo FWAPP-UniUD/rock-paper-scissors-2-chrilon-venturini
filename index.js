@@ -7,7 +7,7 @@ class RockPaperScissor{
 
         let radios = [];
 
-        const labels = ["Rock", "Paper", "Scissor"];
+        this.labels = ["Rock", "Paper", "Scissor"];
 
         for(let i = 0; i < 3; i++) {
             const radio = document.createElement("input");
@@ -19,7 +19,7 @@ class RockPaperScissor{
 
             const label = document.createElement("label");
             label.setAttribute("for", i);
-            label.textContent = labels[i];
+            label.textContent = this.labels[i];
             let br = document.createElement("br");
 
             this.mainDiv.append(radio);
@@ -43,26 +43,27 @@ class RockPaperScissor{
 
     
     opponentChoice(){
-        this.opponent_choice= Math.floor(Math.random()*3);
+        this.opponent_choice = Math.floor(Math.random()*3);
         
     }
 
     play(event){
         this.opponentChoice();
-        if (this.hr==null){
+        if (this.hr == null){
             this.hr = document.createElement("hr");
-            this.oc = document.createElement("h2");
-            this.oc.textContent=this.opponent_choice;
+            this.head = document.createElement("h2");
+            this.oc = document.createElement("h3");
+            this.head.textContent = "Your opponent's choice:";
+            this.oc.textContent = this.labels[this.opponent_choice];
             this.mainDiv.appendChild(this.hr);
+            this.mainDiv.appendChild(this.head);
             this.mainDiv.appendChild(this.oc);    
-        }else{
-            this.oc.textContent=this.opponent_choice;
+        } else {
+            this.oc.textContent = this.labels[this.opponent_choice];
         }
 
-        if(this.result==null){
-            const br =document.createElement("br");
-            this.result=document.createElement("h1");
-            this.mainDiv.appendChild(br);
+        if(this.result == null){
+            this.result = document.createElement("h3");
             this.mainDiv.appendChild(this.result);
         }
         let currentAUX = document.querySelector('[name="choice"]:checked');
@@ -71,14 +72,16 @@ class RockPaperScissor{
     }
     
     controlWin(){
-        if(this.current<this.opponent_choice || (this.current==2 && this.opponent_choice==0)){
-            this.result.textContent="Lose";
-        }else if(this.current==this.opponent_choice){
-            this.result.textContent="Tie";
-        }else {
+        if(this.current == 2 && this.opponent_choice == 0) {
+            this.result.textContent="Lose";            
+        } else if(this.current == 0 && this.opponent_choice == 2){
             this.result.textContent="Win!";
+        } else if(this.current==this.opponent_choice){
+            this.result.textContent="Tie";
+        } else if(this.current > this.opponent_choice) {
+            this.result.textContent="Win!";
+        } else {
+            this.result.textContent="Lose";        
         }
-    
     }
-
 }
